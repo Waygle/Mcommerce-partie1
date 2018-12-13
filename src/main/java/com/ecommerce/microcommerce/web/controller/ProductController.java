@@ -98,13 +98,6 @@ public class ProductController {
     }
 
 
-    //Pour les tests
-    @GetMapping(value = "test/produits/{prix}")
-    public List<Product>  testeDeRequetes(@PathVariable int prix) {
-
-        return productDao.chercherUnProduitCher(400);
-    }
-
     //Retourne chaque produit avec marge
     @GetMapping(value = "/AdminProduits")
     public List<String> calculerMargeProduit() {
@@ -118,5 +111,20 @@ public class ProductController {
         
         return productsMarge;
     }
+
+    //Pour les tests
+    @GetMapping(value = "test/produits/{prix}")
+    public List<Product>  testeDeRequetes(@PathVariable int prix) {
+
+        return productDao.chercherUnProduitCher(400);
+    }
+    
+    //Retourne la liste des produits triée par ordre alphabétique
+    @GetMapping(value = "test/produits/OrdreAlphabetique")
+    public List<Product> trierProduitsParOrdreAlphabetique() {
+
+        return productDao.findAllByOrderByNomAsc();
+    }
+
 
 }
